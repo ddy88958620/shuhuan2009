@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd"
+	default-autowire="byName">
+
+	<context:component-scan base-package="com.happinesstree.oauth2.api">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<mvc:default-servlet-handler />
+	
+	<mvc:annotation-driven />
+	
+	<!-- JSON配置设置 -->
+    <bean class="com.happinesstree.oauth2.util.UTF8StringBeanPostProcessor" />
+
+	<mvc:interceptors>
+		<bean class="com.happinesstree.oauth2.api.interceptor.Oauth2ApiInterceptor" />
+	</mvc:interceptors>
+
+	<!-- json view -->
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<property name="objectMapper">
+			<bean class="org.codehaus.jackson.map.ObjectMapper">
+				<property name="serializerProvider" ref="serializerProvider" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	
+	<!--Basic application beans. -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="serializerProvider" class="org.codehaus.jackson.map.ser.StdSerializerProvider">
+		<property name="nullValueSerializer" ref="nullValueSerializer" />
+	</bean>
+
+	<bean id="nullValueSerializer" class="com.qiyi.openplatform.utils.NullSerializer" />
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000" />
+	</bean>
+
+	
+
+</beans>
