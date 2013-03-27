@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+      PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+	
+	    <!-- domain 序列化 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+			<!-- 必须实现Serializable接口 -->
+			<property name="suppressJavaInterface" value="false" />
+		</plugin>
+		
+
+		<!-- 是否生成注释，为false时，生成注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/oauth2" userId="oauth2" password="oauth2">
+			<property name="characterEncoding" value="utf-8" />
+			<property name="useUnicode" value="true" />
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- generate Model -->
+		<javaModelGenerator targetPackage="com.happinesstree.oauth2.dao.domain"
+			targetProject="target/"><!-- 相对pom路径即可 -->
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- generate xml -->
+		<sqlMapGenerator targetPackage="com.happinesstree.oauth2.dao.sql"
+			targetProject="target/">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- generate Mapper -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.happinesstree.oauth2.dao.mapper" targetProject="target/">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<table schema="oauth2" tableName="user" 
+		  enableCountByExample="false"
+          enableUpdateByExample="false" 
+          enableDeleteByExample="false"
+          enableSelectByExample="false" 
+          selectByExampleQueryId="false"
+		 />
+		
+		<!-- 
+		<table schema="openapi_test" tableName="op_app_user_permission" 
+		  enableCountByExample="false"
+          enableUpdateByExample="false" 
+          enableDeleteByExample="false"
+          enableSelectByExample="false" 
+          selectByExampleQueryId="false"
+		 />
+		 --> 
+		 
+	</context>
+</generatorConfiguration>

@@ -20,5 +20,19 @@
 			<artifactId>happinesstree-oauth2-dao</artifactId>
 			<version>${happinesstree.version}</version>
 		</dependency>
+
+		<!-- testing begin -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- testing end -->
 	</dependencies>
 </project>
