@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiyi.videocloud.openplatform.dao.mapper.OauthCodeMapper">
+	<resultMap id="BaseResultMap" type="com.qiyi.videocloud.openplatform.domain.OauthCode">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="authorize_request" property="authorizeRequest" jdbcType="LONGVARBINARY" />
+		<result column="expiration" property="expiration" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, code, authorize_request, expiration, create_time, update_time, state
+	</sql>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_code
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insert" parameterType="com.qiyi.videocloud.openplatform.domain.OauthCode">
+		insert into oauth_code (id, code, expiration,
+		create_time, update_time, state,
+		authorize_request)
+		values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR},
+		#{expiration,jdbcType=BIGINT},
+		#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{state,jdbcType=INTEGER},
+		#{authorizeRequest,jdbcType=LONGVARBINARY})
+	</insert>
+	
+	<select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_code
+		where code = #{code,jdbcType=VARCHAR} 
+		AND state = 1 
+		ORDER BY id DESC 
+		LIMIT 1
+	</select>
+	
+	<update id="deleteById">
+		update oauth_code
+		set state = 0
+		where id = #{id,jdbcType=INTEGER} 
+		LIMIT 1
+	</update>
+	
+</mapper>

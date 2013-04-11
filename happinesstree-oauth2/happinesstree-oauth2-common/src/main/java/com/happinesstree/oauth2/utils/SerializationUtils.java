@@ -1,4 +1,4 @@
-package com.happinesstree.oauth2.util;
+package com.happinesstree.oauth2.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

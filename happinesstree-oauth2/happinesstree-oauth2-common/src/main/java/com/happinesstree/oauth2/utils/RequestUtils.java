@@ -7,7 +7,7 @@
  * @Created on 下午3:18:05
  * @author zhiyuan
  */
-package com.happinesstree.oauth2.util;
+package com.happinesstree.oauth2.utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -439,15 +439,5 @@ public class RequestUtils {
         }
 
         return params;
-    }
-    
-    /**
-     * 验证定长字符有效性
-     * @param args
-     */
-    public static void main(String[] args){
-    	String value="9.613";
-    	Double raw=Double.parseDouble(value);
-    	System.out.println(raw.longValue());
     }
 }

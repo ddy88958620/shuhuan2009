@@ -384,11 +384,6 @@
 				<version>${xmemcached.version}</version>
 			</dependency>
 			<!-- cache end -->
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-ldap</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

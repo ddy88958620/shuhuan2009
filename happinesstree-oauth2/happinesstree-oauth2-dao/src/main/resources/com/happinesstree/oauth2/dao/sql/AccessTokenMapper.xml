@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.happinesstree.oauth2.dao.mapper.AccessTokenMapper">
+	<resultMap id="BaseResultMap" type="com.happinesstree.oauth2.dao.domain.AccessToken">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="access_token" property="accessToken" jdbcType="VARCHAR" />
+		<result column="token" property="token" jdbcType="LONGVARBINARY" />
+		<result column="expiration" property="expiration" jdbcType="BIGINT" />
+		<result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
+		<result column="app_key" property="appKey" jdbcType="VARCHAR" />
+		<result column="uid" property="uid" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, access_token, token, expiration,
+		refresh_token, app_key, uid, 
+		create_time, update_time, state
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_access_token
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<insert id="insert" parameterType="com.qiyi.videocloud.openplatform.domain.OauthAccessToken">
+		insert into oauth_access_token (id, access_token, expiration, refresh_token, app_key,
+		uid, create_time, update_time, state, token
+		)
+		values (#{id,jdbcType=INTEGER}, 
+		#{accessToken,jdbcType=VARCHAR},
+		#{expiration,jdbcType=BIGINT},
+		#{refreshToken,jdbcType=VARCHAR}, 
+		#{appKey,jdbcType=VARCHAR},
+		#{uid,jdbcType=BIGINT}, 
+		#{createTime,jdbcType=BIGINT},
+		#{updateTime,jdbcType=BIGINT},
+		#{state,jdbcType=INTEGER}, 
+		#{token,jdbcType=LONGVARBINARY}
+		)
+	</insert>
+	
+	<select id="selectByTokenValue" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_access_token
+		where access_token = #{tokenValue,jdbcType=VARCHAR}
+		AND state = 1 
+		ORDER BY id DESC 
+		LIMIT 1
+	</select>
+	
+	<select id="selectByExpiredTokenValue" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_access_token
+		where access_token = #{tokenValue,jdbcType=VARCHAR}
+		ORDER BY id DESC 
+		LIMIT 1
+	</select>
+	
+	<update id="deleteByTokenValue">
+		update oauth_access_token
+		set state = 0
+		where access_token = #{tokenValue,jdbcType=INTEGER} 
+		LIMIT 1
+	</update>
+	
+	<update id="deleteAccessTokenUsingRefreshToken">
+		update oauth_access_token
+		set state = 0
+		where refresh_token = #{tokenValue,jdbcType=INTEGER} 
+	</update>
+	
+	<select id="selectByUidAndAppKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from oauth_access_token
+		where uid = #{uid,jdbcType=BIGINT} 
+		AND app_key = #{appKey,jdbcType=VARCHAR}  
+		AND state = 1 
+		ORDER BY id DESC 
+		LIMIT 1
+	</select>
+	
+</mapper>

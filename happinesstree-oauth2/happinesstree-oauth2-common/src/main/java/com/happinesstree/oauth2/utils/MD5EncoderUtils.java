@@ -1,12 +1,9 @@
-package com.happinesstree.oauth2.util;
+package com.happinesstree.oauth2.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.codec.Hex;
-import org.springframework.security.crypto.codec.Utf8;
 
 /**
  * 
@@ -15,32 +12,36 @@ import org.springframework.security.crypto.codec.Utf8;
  * @Description: <br>
  * MD5加密
  *               <br>
- * @Company: iqiyi.com
+ * @Company: happinesstree.com
  * @Created on 2013-3-13 下午3:23:45
- * @author shuhuan@qiyi.com
+ * @author shuhuan@happinesstree.com
  */
 public class MD5EncoderUtils {
 
-	private static final Logger logger = LoggerFactory .getLogger(MD5EncoderUtils.class);
-	
 	/**
 	 * 普通MD5加密
 	 * 
-	 * @param rawPass
+	 * @param value
 	 * @return
 	 */
-	public static String md5(String rawPass) {
+	public static String md5(String value) {
+		if (value == null) {
+			return null;
+		}
+		MessageDigest digest;
 		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-			
-			byte[] digest = messageDigest.digest(Utf8.encode(rawPass));
-
-	        return new String(Hex.encode(digest));
-	        
-		} catch (NoSuchAlgorithmException e) {
-			logger.error("md5 exception", e);
+			digest = MessageDigest.getInstance("MD5");
+		}
+		catch (NoSuchAlgorithmException e) {
+			throw new IllegalStateException("MD5 algorithm not available.  Fatal (should be in the JDK).");
 		}
 
-        return "";
+		try {
+			byte[] bytes = digest.digest(value.getBytes("UTF-8"));
+			return String.format("%032x", new BigInteger(1, bytes));
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new IllegalStateException("UTF-8 encoding not available.  Fatal (should be in the JDK).");
+		}
     }
 }
