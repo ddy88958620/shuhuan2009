@@ -10,11 +10,11 @@ import com.happinesstree.oauth2.dao.domain.AppInfo;
  * @Description: <br>
  * OAuth2.0访问令牌处理接口
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-2-4 下午3:17:23
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-public interface OauthAccessTokenService {
+public interface AccessTokenService {
 
 	/**
 	 * 保存访问令牌
@@ -113,6 +113,6 @@ public interface OauthAccessTokenService {
 	 * @param appKey
 	 * @return
 	 */
-	AccessToken findAccessTokenByUidAndAppKey(String uid, String appKey);
+	AccessToken findAccessTokenByUidAndAppKey(long uid, String appKey);
 
 }

@@ -12,7 +12,7 @@ import com.happinesstree.oauth2.clients.ClientDetails;
 import com.happinesstree.oauth2.clients.ClientDetailsService;
 import com.happinesstree.oauth2.dao.domain.AppInfo;
 import com.happinesstree.oauth2.exceptions.InvalidClientException;
-import com.happinesstree.oauth2.service.OpAppService;
+import com.happinesstree.oauth2.service.AppInfoService;
 
 /**
  * 
@@ -21,15 +21,15 @@ import com.happinesstree.oauth2.service.OpAppService;
  * @Description: <br>
  * 客户端（App）信息服务实现
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-1-14 下午2:01:04
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-@Service("qiyiClientDetailsService")
+@Service("myClientDetailsService")
 public class MyClientDetailsService implements ClientDetailsService {
 
 	@Autowired
-	private OpAppService opAppService;
+	private AppInfoService opAppService;
 	
 	@Override
 	public ClientDetails loadClientByClientId(String clientId) throws InvalidClientException {

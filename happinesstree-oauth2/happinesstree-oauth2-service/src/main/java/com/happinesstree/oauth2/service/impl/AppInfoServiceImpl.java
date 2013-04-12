@@ -34,7 +34,7 @@ import com.qiyi.videocloud.openplatform.util.OpenPlatformException;
 import com.qiyi.videocloud.openplatform.util.PaginationUtils;
 
 @Service("opAppService")
-public class OpAppServiceImpl implements OpAppService {
+public class AppInfoServiceImpl implements AppInfoService {
 	
 	@Autowired
 	OpAppInfoMapper appMapper;
@@ -52,7 +52,7 @@ public class OpAppServiceImpl implements OpAppService {
 	UploadDailyReportMapper uploadDailyReportMapper;
 	
 	@Autowired
-	OauthAccessTokenService oauthAccessTokenSerive;
+	AccessTokenService oauthAccessTokenSerive;
 
 	
 	@Autowired

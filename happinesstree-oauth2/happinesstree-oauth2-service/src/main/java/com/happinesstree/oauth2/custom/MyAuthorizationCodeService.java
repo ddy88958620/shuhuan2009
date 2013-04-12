@@ -9,7 +9,7 @@ import com.happinesstree.oauth2.code.RandomValueAuthorizationCodeServices;
 import com.happinesstree.oauth2.dao.domain.AuthorizationCode;
 import com.happinesstree.oauth2.exceptions.InvalidGrantException;
 import com.happinesstree.oauth2.request.AuthorizationRequest;
-import com.happinesstree.oauth2.service.OauthCodeService;
+import com.happinesstree.oauth2.service.AuthorizationCodeService;
 import com.happinesstree.oauth2.utils.SerializationUtils;
 
 /**
@@ -19,11 +19,11 @@ import com.happinesstree.oauth2.utils.SerializationUtils;
  * @Description: <br>
  * 授权码code缓存、数据库管理实现
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-8 下午2:28:30
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-@Service("qiyiAuthorizationCodeService")
+@Service("myAuthorizationCodeService")
 public class MyAuthorizationCodeService extends RandomValueAuthorizationCodeServices {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyAuthorizationCodeService.class);
@@ -32,7 +32,7 @@ public class MyAuthorizationCodeService extends RandomValueAuthorizationCodeServ
 	private int authorizationCodeValiditySeconds = 60 * 10 * 1000;
 	
 	@Autowired
-	private OauthCodeService oauthCodeService;
+	private AuthorizationCodeService oauthCodeService;
 
 	/**
 	 * 保存授权码

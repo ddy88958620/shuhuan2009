@@ -2,7 +2,6 @@ package com.happinesstree.oauth2.custom;
 
 import java.util.Collection;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.happinesstree.oauth2.dao.domain.AccessToken;
 import com.happinesstree.oauth2.dao.domain.RefreshToken;
+import com.happinesstree.oauth2.dao.domain.User;
 import com.happinesstree.oauth2.request.AuthorizationRequest;
-import com.happinesstree.oauth2.service.OauthAccessTokenService;
-import com.happinesstree.oauth2.service.OauthRefreshTokenService;
+import com.happinesstree.oauth2.service.AccessTokenService;
+import com.happinesstree.oauth2.service.RefreshTokenService;
 import com.happinesstree.oauth2.token.OAuth2AccessToken;
 import com.happinesstree.oauth2.token.OAuth2RefreshToken;
 import com.happinesstree.oauth2.token.TokenStore;
@@ -25,9 +25,9 @@ import com.happinesstree.oauth2.utils.SerializationUtils;
  * @Description: <br>
  * 访问令牌/刷新令牌管理
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-8 下午2:51:56
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @Service("qiyiTokenStore")
 public class MyTokenStore implements TokenStore {
@@ -35,10 +35,10 @@ public class MyTokenStore implements TokenStore {
 	private static final Logger logger = LoggerFactory.getLogger(MyTokenStore.class);
 	
 	@Autowired
-	private OauthAccessTokenService oauthAccessTokenService;
+	private AccessTokenService oauthAccessTokenService;
 	
 	@Autowired
-	private OauthRefreshTokenService oauthRefreshTokenService;
+	private RefreshTokenService oauthRefreshTokenService;
 	
 	/**
 	 * 根据认证对象，查询访问令牌
@@ -53,11 +53,12 @@ public class MyTokenStore implements TokenStore {
 		}
 
 		// 获得uid/clientId
-		String uid = "";
-//		PassportUser passportUser = (PassportUser) authorizationRequest.getUser();
-//		if( null != passportUser && StringUtils.isNotBlank(passportUser.getUid()) ) {
-//			uid = passportUser.getUid();
-//		}
+		long uid = 0;
+		User user = (User) authorizationRequest.getUser();
+		if( null != user ) {
+			uid = user.getId();
+		}
+		
 		String clientId = authorizationRequest.getClientId();
 		
 		AccessToken accessToken = oauthAccessTokenService.findAccessTokenByUidAndAppKey(uid, clientId);
@@ -81,25 +82,22 @@ public class MyTokenStore implements TokenStore {
 		}
 
 		AccessToken accessToken = new AccessToken();
-		// 访问令牌MD5加密串
+		// 访问令牌MD5
 		accessToken.setAccessToken(token.getValue());
 		// 访问令牌对象序列化
 		accessToken.setToken(serializeAccessToken(token));
 		// 访问令牌过期时间戳
 		accessToken.setExpiration(token.getExpiration().getTime());
-		// 用户名 passport用户authcookie
-		String uid = "";
-		String authcookie = "";
-//		PassportUser passportUser = (PassportUser) authorizationRequest.getUser();
-//		if( null != passportUser ) {
-//			uid = passportUser.getUid();
-//			authcookie = passportUser.getAuthCookie();
-//		}
-//		accessToken.setUid(StringUtil.parseLong(uid));
-		accessToken.setAuthcookie(authcookie);
+		// 用户uid
+		long uid = 0;
+		User user = (User) authorizationRequest.getUser();
+		if( null != user ) {
+			uid = user.getId();
+		}
+		accessToken.setUid(uid);
 		// 客户端AppKey
 		accessToken.setAppKey(authorizationRequest.getClientId());
-		// 刷新令牌MD5加密串
+		// 刷新令牌MD5
 		accessToken.setRefreshToken(refreshToken);
 		// 当前时间now
 		long now = System.currentTimeMillis() / 1000;
@@ -151,7 +149,7 @@ public class MyTokenStore implements TokenStore {
 	public void storeRefreshToken(OAuth2RefreshToken oauth2RefreshToken, AuthorizationRequest authorizationRequest) {
 		
 		RefreshToken refreshToken = new RefreshToken();
-		// 刷新令牌MD5加密串
+		// 刷新令牌MD5
 		refreshToken.setRefreshToken(oauth2RefreshToken.getValue());
 		// 刷新令牌对象序列化
 		refreshToken.setToken(serializeRefreshToken(oauth2RefreshToken));

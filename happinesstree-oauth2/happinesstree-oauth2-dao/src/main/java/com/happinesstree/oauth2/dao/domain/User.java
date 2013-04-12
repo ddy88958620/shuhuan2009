@@ -18,7 +18,7 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = 3641010980714243598L;
 
-	private int id;                // 主键ID
+	private long id;               // 主键ID
 	
 	private String email;          // 邮箱
 	
@@ -31,11 +31,11 @@ public class User implements Serializable {
 	private int state;             // 默认为1，逻辑删除为0
 	
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -85,7 +85,7 @@ public class User implements Serializable {
 		int result = 1;
 		result = prime * result + (int) (createTime ^ (createTime >>> 32));
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + state;

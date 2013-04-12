@@ -8,8 +8,8 @@ import com.happinesstree.oauth2.dao.domain.AccessToken;
 import com.happinesstree.oauth2.dao.domain.AppInfo;
 import com.happinesstree.oauth2.dao.mapper.AccessTokenMapper;
 import com.happinesstree.oauth2.dao.mapper.RefreshTokenMapper;
-import com.happinesstree.oauth2.service.OauthAccessTokenService;
-import com.happinesstree.oauth2.service.OpAppService;
+import com.happinesstree.oauth2.service.AccessTokenService;
+import com.happinesstree.oauth2.service.AppInfoService;
 
 /**
  * 
@@ -18,12 +18,12 @@ import com.happinesstree.oauth2.service.OpAppService;
  * @Description: <br>
  * OAuth2.0访问令牌业务处理实现
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-2-4 下午3:39:05
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @Service("oauthAccessTokenService")
-public class OauthAccessTokenServiceImpl implements OauthAccessTokenService {
+public class AccessTokenServiceImpl implements AccessTokenService {
 
 	@Autowired
 	private AccessTokenMapper oauthAccessTokenMapper;
@@ -32,7 +32,7 @@ public class OauthAccessTokenServiceImpl implements OauthAccessTokenService {
 	private RefreshTokenMapper oauthRefreshTokenMapper;
 	
 	@Autowired
-	private OpAppService opAppService;
+	private AppInfoService opAppService;
 	
 	@Autowired
 	//private PassportService passportService;

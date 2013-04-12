@@ -31,7 +31,7 @@ public interface UserMapper {
      * @param id
      * @return
      */
-    User selectByPrimaryKey(@Param("id") Integer id);
+    User selectByPrimaryKey(@Param("id") Long id);
     
     /**
      * 根据邮箱,查询用户信息

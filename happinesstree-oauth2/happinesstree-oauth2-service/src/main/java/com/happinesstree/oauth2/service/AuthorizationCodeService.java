@@ -9,11 +9,11 @@ import com.happinesstree.oauth2.dao.domain.AuthorizationCode;
  * @Description: <br>
  * OAuth2.0授权码处理接口
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-2-4 下午3:17:23
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-public interface OauthCodeService {
+public interface AuthorizationCodeService {
 
 	/**
 	 * 保存授权码

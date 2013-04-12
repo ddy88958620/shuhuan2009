@@ -39,7 +39,7 @@ public class UserMapperTest extends CommonDaoTest{
 	
 	@Test
 	public void testSelectByPrimaryKey() {
-		User user = userMapper.selectByPrimaryKey(1);
+		User user = userMapper.selectByPrimaryKey(1L);
 		System.out.println(user);
 		Assert.assertNotNull(user);
 	}

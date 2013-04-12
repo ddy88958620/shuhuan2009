@@ -15,9 +15,16 @@ import com.happinesstree.oauth2.dao.domain.AppInfo;
 
 /**
  * 
- *
+ * @Title: RefreshTokenService.java
+ * @Copyright: Copyright (c) 2012
+ * @Description: <br>
+ * OAuth2.0刷新令牌处理接口
+ *               <br>
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-public interface OpAppService {
+public interface AppInfoService {
 	
 	AppInfo getAppInfoByAppKey(String appKey);
 	

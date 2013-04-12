@@ -28,11 +28,11 @@ import com.happinesstree.oauth2.utils.MD5EncoderUtils;
  * @Description: <br>
  * AccessToken/RefreshToken令牌管理实现
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-8 下午2:34:01
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
-@Service("qiyiTokenService")
+@Service("myTokenService")
 public class MyTokenService implements AuthorizationServerTokenServices {
 
 	// 访问令牌有效时间，默认30天

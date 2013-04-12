@@ -14,12 +14,12 @@ import com.qiyi.videocloud.openplatform.service.OauthRefreshTokenService;
  * @Description: <br>
  * OAuth2.0刷新令牌业务处理实现
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-2-4 下午3:39:05
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @Service("oauthRefreshTokenService")
-public class OauthRefreshTokenServiceImpl implements OauthRefreshTokenService {
+public class RefreshTokenServiceImpl implements RefreshTokenService {
 
 	@Autowired
 	RefreshTokenMapper oauthRefreshTokenMapper;
