@@ -1,14 +1,12 @@
 package com.happinesstree.oauth2.clients;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,8 +26,6 @@ import org.codehaus.jackson.map.deser.StdDeserializer;
 import org.codehaus.jackson.map.type.SimpleType;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.util.StringUtils;
 
 /**
@@ -67,8 +63,6 @@ public class BaseClientDetails implements ClientDetails {
 	@JsonProperty("redirect_uri")
 	@JsonDeserialize(using = ArrayOrStringDeserializer.class)
 	private Set<String> registeredRedirectUris;
-
-	private List<GrantedAuthority> authorities = Collections.emptyList();
 
 	@JsonProperty("access_token_validity")
 	private Integer accessTokenValiditySeconds;
@@ -121,10 +115,6 @@ public class BaseClientDetails implements ClientDetails {
 		}
 		else {
 			this.authorizedGrantTypes = new HashSet<String>(Arrays.asList("authorization_code", "refresh_token"));
-		}
-
-		if (StringUtils.hasText(authorities)) {
-			this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 		}
 
 		if (StringUtils.hasText(redirectUris)) {
@@ -197,17 +187,6 @@ public class BaseClientDetails implements ClientDetails {
 				registeredRedirectUris);
 	}
 
-	@JsonProperty("authorities")
-	private List<String> getAuthoritiesAsStrings() {
-		return new ArrayList<String>(AuthorityUtils.authorityListToSet(authorities));
-	}
-
-	@JsonProperty("authorities")
-	@JsonDeserialize(using = ArrayOrStringDeserializer.class)
-	private void setAuthoritiesAsStrings(Set<String> values) {
-		setAuthorities(AuthorityUtils.createAuthorityList(values.toArray(new String[values.size()])));
-	}
-
 	public static class ArrayOrStringDeserializer extends StdDeserializer<Set<String>> {
 
 		public ArrayOrStringDeserializer() {
@@ -231,16 +210,6 @@ public class BaseClientDetails implements ClientDetails {
 			return jp.readValueAs(new TypeReference<Set<String>>() {
 			});
 		}
-	}
-
-	@JsonIgnore
-	public Collection<GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
-
-	@JsonIgnore
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities = new ArrayList<GrantedAuthority>(authorities);
 	}
 
 	@JsonIgnore
@@ -279,16 +248,33 @@ public class BaseClientDetails implements ClientDetails {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((accessTokenValiditySeconds==null) ? 0 : accessTokenValiditySeconds);
-		result = prime * result + ((refreshTokenValiditySeconds == null) ? 0 : refreshTokenValiditySeconds);
-		result = prime * result + ((authorities == null) ? 0 : authorities.hashCode());
-		result = prime * result + ((authorizedGrantTypes == null) ? 0 : authorizedGrantTypes.hashCode());
-		result = prime * result + ((clientId == null) ? 0 : clientId.hashCode());
-		result = prime * result + ((clientSecret == null) ? 0 : clientSecret.hashCode());
-		result = prime * result + ((registeredRedirectUris == null) ? 0 : registeredRedirectUris.hashCode());
-		result = prime * result + ((resourceIds == null) ? 0 : resourceIds.hashCode());
+		result = prime
+				* result
+				+ ((accessTokenValiditySeconds == null) ? 0
+						: accessTokenValiditySeconds.hashCode());
+		result = prime
+				* result
+				+ ((additionalInformation == null) ? 0 : additionalInformation
+						.hashCode());
+		result = prime
+				* result
+				+ ((authorizedGrantTypes == null) ? 0 : authorizedGrantTypes
+						.hashCode());
+		result = prime * result
+				+ ((clientId == null) ? 0 : clientId.hashCode());
+		result = prime * result
+				+ ((clientSecret == null) ? 0 : clientSecret.hashCode());
+		result = prime
+				* result
+				+ ((refreshTokenValiditySeconds == null) ? 0
+						: refreshTokenValiditySeconds.hashCode());
+		result = prime
+				* result
+				+ ((registeredRedirectUris == null) ? 0
+						: registeredRedirectUris.hashCode());
+		result = prime * result
+				+ ((resourceIds == null) ? 0 : resourceIds.hashCode());
 		result = prime * result + ((scope == null) ? 0 : scope.hashCode());
-		result = prime * result + additionalInformation.hashCode();
 		return result;
 	}
 
@@ -301,68 +287,66 @@ public class BaseClientDetails implements ClientDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		BaseClientDetails other = (BaseClientDetails) obj;
-		if (accessTokenValiditySeconds != other.accessTokenValiditySeconds)
-			return false;
-		if (refreshTokenValiditySeconds != other.refreshTokenValiditySeconds)
-			return false;
-		if (authorities == null) {
-			if (other.authorities != null)
+		if (accessTokenValiditySeconds == null) {
+			if (other.accessTokenValiditySeconds != null)
 				return false;
-		}
-		else if (!authorities.equals(other.authorities))
-			return false;
-		if (authorizedGrantTypes == null) {
-			if (other.authorizedGrantTypes != null)
-				return false;
-		}
-		else if (!authorizedGrantTypes.equals(other.authorizedGrantTypes))
-			return false;
-		if (clientId == null) {
-			if (other.clientId != null)
-				return false;
-		}
-		else if (!clientId.equals(other.clientId))
-			return false;
-		if (clientSecret == null) {
-			if (other.clientSecret != null)
-				return false;
-		}
-		else if (!clientSecret.equals(other.clientSecret))
-			return false;
-		if (registeredRedirectUris == null) {
-			if (other.registeredRedirectUris != null)
-				return false;
-		}
-		else if (!registeredRedirectUris.equals(other.registeredRedirectUris))
-			return false;
-		if (resourceIds == null) {
-			if (other.resourceIds != null)
-				return false;
-		}
-		else if (!resourceIds.equals(other.resourceIds))
-			return false;
-		if (scope == null) {
-			if (other.scope != null)
-				return false;
-		}
-		else if (!scope.equals(other.scope))
+		} else if (!accessTokenValiditySeconds
+				.equals(other.accessTokenValiditySeconds))
 			return false;
 		if (additionalInformation == null) {
 			if (other.additionalInformation != null)
 				return false;
-		}
-		else if (!additionalInformation.equals(other.additionalInformation))
+		} else if (!additionalInformation.equals(other.additionalInformation))
+			return false;
+		if (authorizedGrantTypes == null) {
+			if (other.authorizedGrantTypes != null)
+				return false;
+		} else if (!authorizedGrantTypes.equals(other.authorizedGrantTypes))
+			return false;
+		if (clientId == null) {
+			if (other.clientId != null)
+				return false;
+		} else if (!clientId.equals(other.clientId))
+			return false;
+		if (clientSecret == null) {
+			if (other.clientSecret != null)
+				return false;
+		} else if (!clientSecret.equals(other.clientSecret))
+			return false;
+		if (refreshTokenValiditySeconds == null) {
+			if (other.refreshTokenValiditySeconds != null)
+				return false;
+		} else if (!refreshTokenValiditySeconds
+				.equals(other.refreshTokenValiditySeconds))
+			return false;
+		if (registeredRedirectUris == null) {
+			if (other.registeredRedirectUris != null)
+				return false;
+		} else if (!registeredRedirectUris.equals(other.registeredRedirectUris))
+			return false;
+		if (resourceIds == null) {
+			if (other.resourceIds != null)
+				return false;
+		} else if (!resourceIds.equals(other.resourceIds))
+			return false;
+		if (scope == null) {
+			if (other.scope != null)
+				return false;
+		} else if (!scope.equals(other.scope))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BaseClientDetails [clientId=" + clientId + ", clientSecret=" + clientSecret + ", scope=" + scope
-				+ ", resourceIds=" + resourceIds + ", authorizedGrantTypes=" + authorizedGrantTypes
-				+ ", registeredRedirectUris=" + registeredRedirectUris + ", authorities=" + authorities
-				+ ", accessTokenValiditySeconds=" + accessTokenValiditySeconds + ", refreshTokenValiditySeconds="
-				+ refreshTokenValiditySeconds + ", additionalInformation=" + additionalInformation + "]";
+		return "BaseClientDetails [clientId=" + clientId + ", clientSecret="
+				+ clientSecret + ", scope=" + scope + ", resourceIds="
+				+ resourceIds + ", authorizedGrantTypes="
+				+ authorizedGrantTypes + ", registeredRedirectUris="
+				+ registeredRedirectUris + ", accessTokenValiditySeconds="
+				+ accessTokenValiditySeconds + ", refreshTokenValiditySeconds="
+				+ refreshTokenValiditySeconds + ", additionalInformation="
+				+ additionalInformation + "]";
 	}
 
 }
