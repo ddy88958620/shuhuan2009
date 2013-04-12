@@ -24,9 +24,6 @@ public class AccessTokenMapperTest extends CommonDaoTest {
 	@Autowired
 	AccessTokenMapper accessTokenMapper;
 	
-	/**
-	 * 保存访问令牌
-	 */
 	@Test
 	public void testInsert() {
 		AccessToken accessToken = new AccessToken();
@@ -41,7 +38,6 @@ public class AccessTokenMapperTest extends CommonDaoTest {
 		accessToken.setState(1);
 		
 		int result = accessTokenMapper.insert(accessToken);
-		
 		Assert.assertEquals(1, result);
 	}
 	
@@ -49,30 +45,35 @@ public class AccessTokenMapperTest extends CommonDaoTest {
 	public void testSelectByPrimaryKey() {
 		AccessToken accessToken = accessTokenMapper.selectByPrimaryKey(1);
 		System.out.println(accessToken);
+		Assert.assertNotNull(accessToken);
 	}
 	
 	@Test
 	public void testSelectByTokenValue() {
-		AccessToken accessToken = accessTokenMapper.selectByTokenValue("test");
+		AccessToken accessToken = accessTokenMapper.selectByTokenValue("test-access-token");
 		System.out.println(accessToken);
+		Assert.assertNotNull(accessToken);
 	}
 	
 	@Test
 	public void testDeleteByTokenValue() {
 		int result = accessTokenMapper.deleteByTokenValue("81ac3f3323478933a71f0822b41f6a99");
 		System.out.println(result);
+		Assert.assertEquals(1, result);
 	}
 	
 	@Test
 	public void testDeleteAccessTokenUsingRefreshToken() {
 		int result = accessTokenMapper.deleteAccessTokenUsingRefreshToken("d2f7409504a12be5dbdb3e54248059d8");
 		System.out.println(result);
+		Assert.assertEquals(1, result);
 	}
 	
 	@Test
 	public void testSelectByUidAndAppKey() {
-		AccessToken accessToken = accessTokenMapper.selectByUidAndAppKey(2006491975L, "0E6E5A4747B5BF9E");
+		AccessToken accessToken = accessTokenMapper.selectByUidAndAppKey(2013L, "test-app-key");
 		System.out.println(accessToken);
+		Assert.assertNotNull(accessToken);
 	}
 
 }

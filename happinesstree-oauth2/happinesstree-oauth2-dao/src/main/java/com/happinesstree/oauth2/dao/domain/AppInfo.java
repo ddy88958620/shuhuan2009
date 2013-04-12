@@ -10,9 +10,9 @@ import java.io.Serializable;
  * 应用App
  * 对应数据库表:app_info
  *               <br>
- * @Company: iqiyi.com
+ * @Company: happinesstree.com
  * @Created on 2013-4-9 上午11:14:17
- * @author shuhuan@qiyi.com
+ * @author shuhuan2009@gmail.com
  */
 public class AppInfo implements Serializable {
     
@@ -64,6 +64,7 @@ public class AppInfo implements Serializable {
     
     private int state;                   // 默认有效1，0为逻辑删除
 
+    
 	public int getId() {
 		return id;
 	}
