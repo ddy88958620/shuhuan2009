@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.happinesstree.oauth2.api.exception.OAuth2LogonException;
 import com.happinesstree.oauth2.common.Constants;
 import com.happinesstree.oauth2.exceptions.OAuth2Exception;
-import com.happinesstree.oauth2.service.OauthAccessTokenService;
+import com.happinesstree.oauth2.service.AccessTokenService;
 
 /**
  * 
@@ -43,7 +43,7 @@ public class BaseController {
 	ObjectMapper jacksonObjectMapper;
 	
 	@Autowired
-	public OauthAccessTokenService oauthAccessTokenService;
+	public AccessTokenService oauthAccessTokenService;
 	
 	
 	@ExceptionHandler(Exception.class)
