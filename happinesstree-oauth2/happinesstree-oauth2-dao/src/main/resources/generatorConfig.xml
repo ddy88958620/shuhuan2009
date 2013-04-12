@@ -20,7 +20,7 @@
 		</commentGenerator>
 		
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/oauth2" userId="oauth2" password="oauth2">
+			connectionURL="jdbc:mysql://localhost:3306/oauth2" userId="root" password="">
 			<property name="characterEncoding" value="utf-8" />
 			<property name="useUnicode" value="true" />
 		</jdbcConnection>
@@ -48,7 +48,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
-		<table schema="oauth2" tableName="user" 
+		<table schema="oauth2" tableName="app_info" 
 		  enableCountByExample="false"
           enableUpdateByExample="false" 
           enableDeleteByExample="false"
@@ -56,15 +56,5 @@
           selectByExampleQueryId="false"
 		 />
 		
-		<!-- 
-		<table schema="openapi_test" tableName="op_app_user_permission" 
-		  enableCountByExample="false"
-          enableUpdateByExample="false" 
-          enableDeleteByExample="false"
-          enableSelectByExample="false" 
-          selectByExampleQueryId="false"
-		 />
-		 --> 
-		 
 	</context>
 </generatorConfiguration>
