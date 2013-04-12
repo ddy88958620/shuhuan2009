@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `oauth_refresh_token` (
 -- 应用App数据表
 CREATE TABLE IF NOT EXISTS `app_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `app_key` char(32) NOT NULL,
-  `app_secret` varchar(255) DEFAULT NULL,
+  `app_key` char(32) NOT NULL  COMMENT '应用Key',
+  `app_secret` varchar(255) DEFAULT NULL COMMENT '应用密钥',
   `app_name` varchar(255) NOT NULL COMMENT '应用名称',
   `app_type` int(10) NOT NULL COMMENT '应用类型. 1 PC客户端应用  2移动客户端应用 3 网站',
   `app_desc` varchar(255) DEFAULT NULL COMMENT '应用描述',
