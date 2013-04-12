@@ -32,5 +32,12 @@ public interface AppInfoMapper {
      */
     AppInfo selectByPrimaryKey(@Param("id") Integer id);
     
-
+    /**
+     * 根据AppKey,查询应用APP
+     * 
+     * @param id
+     * @return
+     */
+    AppInfo selectByAppKey(@Param("appKey") String appKey);
+    
 }

@@ -39,15 +39,6 @@ public interface UserMapper {
      * @param email
      * @return
      */
-    User selectByEmail(@Param("code") String email);
+    User selectByEmail(@Param("email") String email);
 
-    /**
-	 * 根据主键ID,逻辑删除授权码
-	 * 【将state修改为0】
-	 * 
-	 * @param code
-	 * @return
-	 */
-    int deleteById(@Param("id") int id);
-    
 }
