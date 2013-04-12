@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qiyi.videocloud.openplatform.dao.mapper.OauthCodeMapper">
-	<resultMap id="BaseResultMap" type="com.qiyi.videocloud.openplatform.domain.OauthCode">
+	<resultMap id="BaseResultMap" type="com.happinesstree.oauth2.dao.domain.AuthorizationCode">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="authorize_request" property="authorizeRequest" jdbcType="LONGVARBINARY" />
@@ -22,7 +22,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
-	<insert id="insert" parameterType="com.qiyi.videocloud.openplatform.domain.OauthCode">
+	<insert id="insert" parameterType="com.happinesstree.oauth2.dao.domain.AuthorizationCode">
 		insert into oauth_code (id, code, expiration,
 		create_time, update_time, state,
 		authorize_request)

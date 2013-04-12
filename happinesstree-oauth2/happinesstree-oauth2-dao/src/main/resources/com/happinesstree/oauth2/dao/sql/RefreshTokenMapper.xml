@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qiyi.videocloud.openplatform.dao.mapper.OauthRefreshTokenMapper">
-	<resultMap id="BaseResultMap" type="com.qiyi.videocloud.openplatform.domain.OauthRefreshToken">
+	<resultMap id="BaseResultMap" type="com.happinesstree.oauth2.dao.domain.RefreshToken">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="refresh_token" property="refreshToken" jdbcType="VARCHAR" />
 		<result column="token" property="token" jdbcType="LONGVARBINARY" />
@@ -22,7 +22,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
-	<insert id="insert" parameterType="com.qiyi.videocloud.openplatform.domain.OauthRefreshToken">
+	<insert id="insert" parameterType="com.happinesstree.oauth2.dao.domain.RefreshToken">
 		insert into oauth_refresh_token (id, refresh_token, expiration,
 		create_time, update_time, state, token)
 		values (#{id,jdbcType=INTEGER}, 

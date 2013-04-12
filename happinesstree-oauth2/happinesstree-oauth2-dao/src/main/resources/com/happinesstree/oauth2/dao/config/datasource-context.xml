@@ -66,15 +66,16 @@
 		<property name="numHelperThreads" value="${slave.db.numHelperThreads}" />
 	</bean>
 	
-	<bean id="dataSource" class="com.qiyi.videocloud.openplatform.util.dao.DynamicDataSource">
+	<bean id="dataSource" class="org.happinesstree.oauth2.dao.dynamic.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
+				<entry key="master" value-ref="masterDataSource" />
 				<entry key="slave" value-ref="slaveDataSource" />
 			</map>
 		</property>
-		<property name="defaultTargetDataSource" ref="masterDataSource" />
+		<property name="defaultTargetDataSource" ref="masterDataSource"></property>
 	</bean>
-
+	
     <!-- transaction manager, use JtaTransactionManager for global tx -->
     <bean id="mmsTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />

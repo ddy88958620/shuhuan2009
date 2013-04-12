@@ -1,4 +1,4 @@
-package com.happinesstree.oauth2.dao.mappertest;
+package com.happinesstree.oauth2.dao.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class CommonDaoTest {
 	
 	@Test
-	public void commonTest(){
+	public void commonTest() {
 		
 	}
 

@@ -28,7 +28,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
-	<insert id="insert" parameterType="com.qiyi.videocloud.openplatform.domain.OauthAccessToken">
+	<insert id="insert" parameterType="com.happinesstree.oauth2.dao.domain.AccessToken">
 		insert into oauth_access_token (id, access_token, expiration, refresh_token, app_key,
 		uid, create_time, update_time, state, token
 		)
