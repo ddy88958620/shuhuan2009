@@ -25,7 +25,13 @@ import org.apache.commons.lang.math.NumberUtils;
 
 /**
  * 
- *
+ * @Title: RequestUtils.java
+ * @Copyright: Copyright (c) 2012
+ * @Description: <br>
+ *               <br>
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public class RequestUtils {
 	  /**
@@ -425,7 +431,8 @@ public class RequestUtils {
      *            POST 过来参数Map
      * @return 新的Map
      */
-    public static Map<String, String> genMapByRequestParas(Map requestParams) {
+    @SuppressWarnings("rawtypes")
+	public static Map<String, String> genMapByRequestParas(Map requestParams) {
 
         Map<String, String> params = new HashMap<String, String>();
         for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {

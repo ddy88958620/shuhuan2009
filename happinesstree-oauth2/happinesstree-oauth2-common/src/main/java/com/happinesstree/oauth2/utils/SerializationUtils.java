@@ -6,6 +6,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 
+ * @Title: SerializationUtils.java
+ * @Copyright: Copyright (c) 2012
+ * @Description: <br>
+ *               <br>
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
+ */
 public class SerializationUtils {
 
 	public static byte[] serialize(Object state) {

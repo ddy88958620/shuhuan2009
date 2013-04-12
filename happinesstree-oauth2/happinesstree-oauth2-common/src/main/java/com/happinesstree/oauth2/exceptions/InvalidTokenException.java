@@ -9,9 +9,9 @@ import com.happinesstree.oauth2.common.Constants;
  * @Description: <br>
  * token过期
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:03:53
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class InvalidTokenException extends OAuth2Exception {

@@ -18,9 +18,9 @@ import com.happinesstree.oauth2.utils.OAuth2Utils;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午6:23:51
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class DefaultAuthorizationRequest implements AuthorizationRequest, Serializable {

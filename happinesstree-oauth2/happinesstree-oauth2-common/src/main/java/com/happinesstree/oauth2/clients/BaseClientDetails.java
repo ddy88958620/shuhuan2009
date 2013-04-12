@@ -34,9 +34,9 @@ import org.springframework.util.StringUtils;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
+ * @Company: happinesstree.com
  * @Created on 2013-3-16 下午6:23:31
- * @author shuhuan@qiyi.com
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 @JsonSerialize(include = Inclusion.NON_DEFAULT)

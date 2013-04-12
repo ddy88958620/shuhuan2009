@@ -6,9 +6,9 @@ package com.happinesstree.oauth2.exceptions;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:05:49
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class SerializationException extends RuntimeException {

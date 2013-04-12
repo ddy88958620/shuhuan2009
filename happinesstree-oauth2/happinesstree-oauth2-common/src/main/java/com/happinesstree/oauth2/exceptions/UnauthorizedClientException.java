@@ -9,9 +9,9 @@ import com.happinesstree.oauth2.common.Constants;
  * @Description: <br>
  * 客户端没有权限
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:06:01
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class UnauthorizedClientException extends OAuth2Exception {

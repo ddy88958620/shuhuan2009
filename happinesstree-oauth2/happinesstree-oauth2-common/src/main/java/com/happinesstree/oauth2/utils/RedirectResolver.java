@@ -9,9 +9,9 @@ import com.happinesstree.oauth2.exceptions.OAuth2Exception;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午6:25:06
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public interface RedirectResolver {
 

@@ -9,9 +9,9 @@ import com.happinesstree.oauth2.common.Constants;
  * @Description: <br>
  * 请求不合法
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:02:30
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class InvalidRequestException extends OAuth2Exception {

@@ -9,9 +9,9 @@ import com.happinesstree.oauth2.common.Constants;
  * @Description: <br>
  * 重定向地址不匹配
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:05:07
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 @SuppressWarnings("serial")
 public class RedirectMismatchException extends OAuth2Exception {

@@ -8,9 +8,9 @@ import com.happinesstree.oauth2.request.AuthorizationRequest;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午6:22:59
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-3-16 下午6:23:31
+ * @author shuhuan2009@gmail.com
  */
 public interface AuthorizationCodeServices {
 

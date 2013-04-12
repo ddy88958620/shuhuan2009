@@ -7,14 +7,13 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * 
- * @Title: MD5Encoder.java
+ * @Title: MD5EncoderUtils.java
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
- * MD5加密
  *               <br>
  * @Company: happinesstree.com
- * @Created on 2013-3-13 下午3:23:45
- * @author shuhuan@happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public class MD5EncoderUtils {
 

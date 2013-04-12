@@ -14,10 +14,11 @@ import org.springframework.http.converter.StringHttpMessageConverter;
  * @Title: UTF8StringBeanPostProcessor.java
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
+ * 中文乱码处理
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2012-12-7 下午5:15:49
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public class UTF8StringBeanPostProcessor implements BeanPostProcessor {
 

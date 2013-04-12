@@ -11,9 +11,9 @@ import java.util.TreeMap;
  * @Description: <br>
  * OAuth2所有异常的母类
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午5:04:32
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public class OAuth2Exception extends RuntimeException {
 

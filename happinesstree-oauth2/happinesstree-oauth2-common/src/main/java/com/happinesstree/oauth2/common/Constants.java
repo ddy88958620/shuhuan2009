@@ -8,7 +8,7 @@ package com.happinesstree.oauth2.common;
  *               <br>
  * @Company: happinesstree.com
  * @Created on 2013-4-7 下午5:07:03
- * @author shuhuan@happinesstree.com
+ * @author shuhuan2009@gmail.com
  */
 public interface Constants {
 	

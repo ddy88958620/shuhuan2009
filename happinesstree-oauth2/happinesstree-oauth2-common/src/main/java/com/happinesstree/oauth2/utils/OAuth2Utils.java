@@ -17,8 +17,8 @@ import org.springframework.util.StringUtils;
  * @Description: <br>
  *               <br>
  * @Company: happinesstree.com
- * @Created on 2013-4-7 下午6:02:02
- * @author shuhuan@happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public abstract class OAuth2Utils {
 

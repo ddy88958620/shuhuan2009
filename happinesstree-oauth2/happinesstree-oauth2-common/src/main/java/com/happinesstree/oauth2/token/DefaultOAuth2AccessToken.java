@@ -16,9 +16,9 @@ import java.util.TreeSet;
  * @Copyright: Copyright (c) 2012
  * @Description: <br>
  *               <br>
- * @Company: iqiyi.com
- * @Created on 2013-3-16 下午6:24:20
- * @author shuhuan@qiyi.com
+ * @Company: happinesstree.com
+ * @Created on 2013-4-7 下午5:07:03
+ * @author shuhuan2009@gmail.com
  */
 public class DefaultOAuth2AccessToken implements Serializable, OAuth2AccessToken {
 
