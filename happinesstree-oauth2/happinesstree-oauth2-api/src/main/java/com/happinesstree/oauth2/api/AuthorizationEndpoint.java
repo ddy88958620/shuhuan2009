@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.happinesstree.oauth2.api.exception.OAuth2LogonException;
 import com.happinesstree.oauth2.clients.ClientDetailsService;
 import com.happinesstree.oauth2.code.AuthorizationCodeServices;
+import com.happinesstree.oauth2.custom.MyTokenService;
 import com.happinesstree.oauth2.exceptions.InvalidGrantException;
 import com.happinesstree.oauth2.exceptions.InvalidRequestException;
 import com.happinesstree.oauth2.exceptions.OAuth2Exception;
@@ -63,8 +65,8 @@ public class AuthorizationEndpoint extends BaseController {
 	private AuthorizationCodeServices authorizationCodeServices;
 	
 	// 令牌管理
-	@Resource(name="qiyiTokenService")
-	private QiyiTokenService qiyiTokenService;
+	@Resource(name="myTokenService")
+	private MyTokenService myTokenService;
 	
 	// Passport奇艺用户管理
 	@Autowired
@@ -273,7 +275,7 @@ public class AuthorizationEndpoint extends BaseController {
 	private ModelAndView getImplicitGrantResponse(
 			AuthorizationRequest authorizationRequest) {
 		try {
-			OAuth2AccessToken accessToken = qiyiTokenService.createAccessToken(authorizationRequest);
+			OAuth2AccessToken accessToken = myTokenService.createAccessToken(authorizationRequest);
 
 			if (accessToken == null) {
 				throw new UnsupportedResponseTypeException("Unsupported response type: token");

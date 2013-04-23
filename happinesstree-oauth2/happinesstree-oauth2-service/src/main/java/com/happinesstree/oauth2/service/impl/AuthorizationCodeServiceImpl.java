@@ -3,9 +3,9 @@ package com.happinesstree.oauth2.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qiyi.videocloud.openplatform.dao.mapper.OauthCodeMapper;
-import com.qiyi.videocloud.openplatform.domain.OauthCode;
-import com.qiyi.videocloud.openplatform.service.OauthCodeService;
+import com.happinesstree.oauth2.dao.domain.AuthorizationCode;
+import com.happinesstree.oauth2.dao.mapper.AuthorizationCodeMapper;
+import com.happinesstree.oauth2.service.AuthorizationCodeService;
 
 /**
  * 
@@ -22,11 +22,11 @@ import com.qiyi.videocloud.openplatform.service.OauthCodeService;
 public class AuthorizationCodeServiceImpl implements AuthorizationCodeService {
 
 	@Autowired
-	OauthCodeMapper oauthCodeMapper;
+	AuthorizationCodeMapper authorizationCodeMapper;
 
 	@Override
 	public boolean saveOauthCode(AuthorizationCode oauthCode) {
-		int result = oauthCodeMapper.insert(oauthCode);
+		int result = authorizationCodeMapper.insert(oauthCode);
 		if( result > 0 ) {
 			return true;
 		} else {
@@ -36,12 +36,12 @@ public class AuthorizationCodeServiceImpl implements AuthorizationCodeService {
 
 	@Override
 	public AuthorizationCode findOauthCodeByCode(String code) {
-		return oauthCodeMapper.selectByCode(code);
+		return authorizationCodeMapper.selectByCode(code);
 	}
 
 	@Override
 	public boolean removeOauthCodeById(int id) {
-		int result = oauthCodeMapper.deleteById(id);
+		int result = authorizationCodeMapper.deleteById(id);
 		if( result > 0 ) {
 			return true;
 		} else {

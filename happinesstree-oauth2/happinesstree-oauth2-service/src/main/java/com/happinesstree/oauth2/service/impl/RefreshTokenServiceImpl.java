@@ -3,9 +3,9 @@ package com.happinesstree.oauth2.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qiyi.videocloud.openplatform.dao.mapper.OauthRefreshTokenMapper;
-import com.qiyi.videocloud.openplatform.domain.OauthRefreshToken;
-import com.qiyi.videocloud.openplatform.service.OauthRefreshTokenService;
+import com.happinesstree.oauth2.dao.domain.RefreshToken;
+import com.happinesstree.oauth2.dao.mapper.RefreshTokenMapper;
+import com.happinesstree.oauth2.service.RefreshTokenService;
 
 /**
  * 

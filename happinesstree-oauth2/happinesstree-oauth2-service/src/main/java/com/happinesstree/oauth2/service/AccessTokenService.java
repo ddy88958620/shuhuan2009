@@ -65,21 +65,13 @@ public interface AccessTokenService {
 	public AppInfo getOpAppInfoByAccessToken(String tokenValue, boolean isExpiredToken);
 	
 	/**
-	 * 根据访问令牌，获取passport用户uid
+	 * 根据访问令牌，获取系统用户uid
 	 * 
 	 * @param tokenValue
 	 * @return
 	 */
 	public String getUidByAccessToken(String tokenValue);
 	
-	/**
-	 * 根据访问令牌，获取passport用户对象
-	 * 
-	 * @param tokenValue
-	 * @return
-	 */
-	//public PassportUser getPassportUserByAccessToken(String tokenValue);
-
 	/**
 	 * 逻辑删除访问令牌
 	 * 

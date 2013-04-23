@@ -42,6 +42,7 @@ public interface Constants {
 	public static String OAUTH2_INVALID_GRANT             = "21325";  // 提供的AuthorizationCode是无效的、过期的或已撤销的
 	public static String OAUTH2_UNAUTHORIZED_CLIENT       = "21326";  // 客户端没有权限
 	public static String OAUTH2_EXPIRED_TOKEN             = "21327";  // token过期
+	public static String OAUTH2_INVALID_TOKEN             = "21332";  // token无效
 	public static String OAUTH2_UNSPPORTED_GRANT_TYPE     = "21328";  // 不支持的 GrantType
 	public static String OAUTH2_UNSUPPORTED_RESPONSE_TYPE = "21329";  // 不支持的 ResponseType
 	public static String OAUTH2_ACCESS_DENIED             = "21330";  // 用户或授权服务器拒绝授予数据访问权限

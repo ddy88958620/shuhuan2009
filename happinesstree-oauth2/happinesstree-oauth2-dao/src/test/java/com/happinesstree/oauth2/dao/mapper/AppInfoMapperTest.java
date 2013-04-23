@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.happinesstree.oauth2.dao.domain.AppInfo;
-import com.happinesstree.oauth2.dao.domain.User;
 
 /**
  * 

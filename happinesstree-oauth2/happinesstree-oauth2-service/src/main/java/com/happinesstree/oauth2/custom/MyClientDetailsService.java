@@ -29,15 +29,15 @@ import com.happinesstree.oauth2.service.AppInfoService;
 public class MyClientDetailsService implements ClientDetailsService {
 
 	@Autowired
-	private AppInfoService opAppService;
+	private AppInfoService appInfoService;
 	
 	@Override
 	public ClientDetails loadClientByClientId(String clientId) throws InvalidClientException {
 		
-		AppInfo opAppInfo = opAppService.getAppInfoByAppKey(clientId);
+		AppInfo appInfo = appInfoService.findAppInfoByAppKey(clientId);
 		
 		// 客户端为空，则提示OAuth2 ERROR
-		if( null == opAppInfo ) {
+		if( null == appInfo ) {
 			throw new InvalidClientException("invalid_client");
 		}
 		
@@ -47,17 +47,17 @@ public class MyClientDetailsService implements ClientDetailsService {
 		clientDetails.setClientId(clientId);
 		
 		// 客户端密钥secret
-		clientDetails.setClientSecret(StringUtils.trim(opAppInfo.getAppSecret()));
+		clientDetails.setClientSecret(StringUtils.trim(appInfo.getAppSecret()));
 		
 		// 获得客户端redirect_uri
-		String registeredRedirectUris = StringUtils.trim(opAppInfo.getRedirectUri());
+		String registeredRedirectUris = StringUtils.trim(appInfo.getRedirectUri());
 				
 		Set<String> uriSet = this.getClientConfigInfo(registeredRedirectUris);
 		
 		clientDetails.setRegisteredRedirectUri(uriSet);
 		
 		// 获得客户端Grant type
-		String grantTypes = StringUtils.trim(opAppInfo.getAuthorizedGrantTypes());
+		String grantTypes = StringUtils.trim(appInfo.getAuthorizedGrantTypes());
 		if( StringUtils.isBlank(grantTypes) ) {
 			grantTypes = "authorization_code,refresh_token,implicit";
 		}
@@ -67,10 +67,10 @@ public class MyClientDetailsService implements ClientDetailsService {
 		clientDetails.setAuthorizedGrantTypes(grantTypeSet);
 		
 		// 访问令牌过期时间
-		clientDetails.setAccessTokenValiditySeconds(opAppInfo.getAccessTokenValidity());
+		clientDetails.setAccessTokenValiditySeconds(appInfo.getAccessTokenValidity());
 		
 		// 刷新令牌过期时间
-		clientDetails.setRefreshTokenValiditySeconds(opAppInfo.getRefreshTokenValidity());
+		clientDetails.setRefreshTokenValiditySeconds(appInfo.getRefreshTokenValidity());
 		
 		return clientDetails;
 	}

@@ -4,12 +4,14 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.happinesstree.oauth2.common.Constants;
 import com.happinesstree.oauth2.dao.domain.AccessToken;
 import com.happinesstree.oauth2.dao.domain.AppInfo;
 import com.happinesstree.oauth2.dao.mapper.AccessTokenMapper;
 import com.happinesstree.oauth2.dao.mapper.RefreshTokenMapper;
 import com.happinesstree.oauth2.service.AccessTokenService;
 import com.happinesstree.oauth2.service.AppInfoService;
+import com.happinesstree.oauth2.utils.StringUtil;
 
 /**
  * 
@@ -32,7 +34,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	private RefreshTokenMapper oauthRefreshTokenMapper;
 	
 	@Autowired
-	private AppInfoService opAppService;
+	private AppInfoService appInfoService;
 	
 	@Autowired
 	//private PassportService passportService;
@@ -60,19 +62,19 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	@Override
 	public String checkAccessTokenValid(String tokenValue) {
 
-		String code = OpConstants.SUCCESS_CODE;
+		String code = Constants.SUCCESS_CODE;
 		
 		try {
 			AccessToken accessToken = findAccessTokenByTokenValue(tokenValue);
 			if (accessToken == null) {
-				code = OpConstants.CODE_INVALID_ACCESS_TOKEN;
+				code = Constants.OAUTH2_EXPIRED_TOKEN;
 			} else if (System.currentTimeMillis() > accessToken.getExpiration()) {
 				removeAccessToken(tokenValue);
-				code = OpConstants.CODE_EXPIRED_ACCESS_TOKEN;
+				code = Constants.OAUTH2_INVALID_TOKEN;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			code = OpConstants.ERROR_CODE;
+			code = Constants.ERROR_CODE;
 		}
 
 		return code;
@@ -90,7 +92,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 			String appKey = accessToken.getAppKey();
 			
 			// 根据appKey，获取AppInfo
-			opAppInfo = opAppService.getAppInfoByAppKey(appKey);
+			opAppInfo = appInfoService.findAppInfoByAppKey(appKey);
 		}
 		
 		return opAppInfo;
@@ -111,7 +113,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 				String appKey = accessToken.getAppKey();
 				
 				// 根据appKey，获取AppInfo
-				opAppInfo = opAppService.getAppInfoByAppKey(appKey);
+				opAppInfo = appInfoService.findAppInfoByAppKey(appKey);
 			}
 		}
 		
@@ -130,28 +132,6 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 		}
 		
 		return uid;
-	}
-
-	@Override
-	public PassportUser getPassportUserByAccessToken(String tokenValue) {
-		
-		PassportUser passportUser = null;
-		
-		AccessToken accessToken = findAccessTokenByTokenValue(tokenValue);
-		
-		if( null != accessToken ) {
-			
-			String authcookie = accessToken.getAuthcookie();
-			
-			if( StringUtils.isNotBlank(authcookie) ) {
-				passportUser = passportService.checkAuthCookie(authcookie);
-			}
-			
-			// unset accessToken
-			accessToken = null;
-		}
-		
-		return passportUser;
 	}
 
 	@Override
@@ -200,8 +180,8 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	}
 
 	@Override
-	public AccessToken findAccessTokenByUidAndAppKey(String uid, String appKey) {
-		return oauthAccessTokenMapper.selectByUidAndAppKey(StringUtil.parseLong(uid), appKey);
+	public AccessToken findAccessTokenByUidAndAppKey(long uid, String appKey) {
+		return oauthAccessTokenMapper.selectByUidAndAppKey(uid, appKey);
 	}
 	
 }

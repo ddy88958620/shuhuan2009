@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.happinesstree.oauth2.clients.ClientDetailsService;
 import com.happinesstree.oauth2.code.RandomValueAuthorizationCodeServices;
 import com.happinesstree.oauth2.common.Constants;
+import com.happinesstree.oauth2.custom.MyTokenService;
 import com.happinesstree.oauth2.exceptions.InvalidGrantException;
 import com.happinesstree.oauth2.exceptions.InvalidRequestException;
 import com.happinesstree.oauth2.exceptions.UnsupportedGrantTypeException;
@@ -50,8 +51,8 @@ public class TokenEndpoint extends BaseController {
 	private RandomValueAuthorizationCodeServices authorizationCodeService;
 	
 	// 令牌管理
-	@Resource(name="qiyiTokenService")
-	private QiyiTokenService qiyiTokenService;
+	@Resource(name="myTokenService")
+	private MyTokenService myTokenService;
 	
 	// 授权请求管理
 	private AuthorizationRequestManager authorizationRequestManager = new DefaultAuthorizationRequestManager();
@@ -92,14 +93,14 @@ public class TokenEndpoint extends BaseController {
 			authorizationRequest.setUser(codeAuthorizationRequest.getUser());
 			
 			// 2、生成access_token
-			token = qiyiTokenService.createAccessToken(authorizationRequest);
+			token = myTokenService.createAccessToken(authorizationRequest);
 			
 		} else if( isRefreshTokenRequest(parameters) ) {
 			// 刷新访问令牌
 			String refreshTokenValue = parameters.get("refresh_token");
 			
 			// 2、生成access_token
-			token = qiyiTokenService.refreshAccessToken(refreshTokenValue, authorizationRequest);
+			token = myTokenService.refreshAccessToken(refreshTokenValue, authorizationRequest);
 		}
 		
 		if (token == null) {
